@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
-  
+
   def setup
     ActionMailer::Base.deliveries.clear
   end
@@ -15,10 +15,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                password_confirmation: "bar" }
     end
     assert_template 'users/new'
-    assert_select 'div#<CSS id for error explanation>'
-    assert_select 'div.<CSS class for field with error>'
+    assert_select 'div#error_explanation'
+    assert_select 'div.field_with_errors'
   end
-  
+
   test "valid signup information with account activation" do
     get signup_path
     assert_difference 'User.count', 1 do
